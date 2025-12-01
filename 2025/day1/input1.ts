@@ -1,4 +1,4 @@
-const input = `L50
+export const input = `L50
 L9
 L2
 R42
@@ -4460,5 +4460,3 @@ L12
 L1
 R42
 L14`;
-
-export default input;

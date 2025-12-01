@@ -1,14 +1,11 @@
-import inputString from "./input1.js";
+import { input } from "./input1";
 
 function f() {
   let password = 0;
   let position = 50;
-  const inputArray = inputString.split("\n");
-  const inputArrayTrimmed: string[] = [];
-  inputArray.forEach((s) => inputArrayTrimmed.push(s.trim()));
+  const inputArray = input.split("\n").map((s) => s.trim());
 
-  for (let i = 0; i < inputArrayTrimmed.length; i++) {
-    const e = inputArrayTrimmed[i];
+  for (const e of inputArray) {
     const num = Number(e.slice(1));
 
     let extra = 0;
