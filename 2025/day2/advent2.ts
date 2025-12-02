@@ -2,22 +2,19 @@ import { input } from "./input2";
 
 function f() {
   let sum = 0;
-  const inputArray = input.split(",").map((s) => s.split("-"));
+  const inputArray = input.split(",").map((s) => s.split("-").map(Number));
 
-  for (const e of inputArray) {
-    for (let i = Number(e[0]); i <= Number(e[1]); i++) {
-      const string = i.toString();
-      for (let j = 1; j <= string.length / 2; j++) {
-        if (string.length % j === 0) {
-          const times = string.length / j - 1;
-          let z = 0;
-          for (let k = 1; k <= times; k++) {
-            if (string.slice(0, j) === string.slice(j * k, j * k + j)) z++;
-          }
-          if (z === times) {
-            sum += Number(string);
-            break;
-          }
+  for (const [start, end] of inputArray) {
+    for (let i = start; i <= end; i++) {
+      const str = String(i);
+
+      for (let blockSize = 1; blockSize <= str.length / 2; blockSize++) {
+        if (str.length % blockSize !== 0) continue;
+        const block = str.slice(0, blockSize);
+
+        if (block.repeat(str.length / blockSize) === str) {
+          sum += i;
+          break;
         }
       }
     }
